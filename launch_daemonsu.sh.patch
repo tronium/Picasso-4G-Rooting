@@ -1,0 +1,35 @@
+--- launch_daemonsu.sh	2008-02-29 10:33:46.000000000 +0000
++++ ramdisk/sbin/launch_daemonsu.sh	2017-05-10 13:05:36.161000303 +0100
+@@ -76,6 +76,32 @@
+   log_print "copying boot image backups from /cache to /data"
+   cp -f /cache/stock_boot_* /data/. 2>/dev/null
+ 
++#
++# Modification by Ori Novanda
++# Directory /su/img contains the source files to auto-create /data/su.img
++# 
++#insertbegin
++
++  if [ ! -f "/data/su.img" ]; then
++    log_print "creating /data/su.img"
++    IMG_MAKE_LOC=/cache/su-img-tmp
++    cp -rp /su/img $IMG_MAKE_LOC
++    make_ext4fs -l 98M -a /su -S /su/file_contexts_image /data/su.img $IMG_MAKE_LOC
++    loopsetup /data/su.img
++    mount -t ext4 -o rw,noatime $LOOPDEVICE $IMG_MAKE_LOC >/dev/null 2>&1
++    chmod 755 $IMG_MAKE_LOC/bin/*
++    chmod 751 $IMG_MAKE_LOC/bin
++    touch $IMG_MAKE_LOC/autocreated
++    umount $IMG_MAKE_LOC
++    losetup -d /data/su.img
++    #chown 0.0 /data/su.img
++    #chmod 0600 /data/su.img
++    #chcon u:object_r:system_data_file:s0 /data/su.img
++    rm -rf /cache/su-img-tmp
++  fi
++
++#insertend
++
+   if [ -f "/data/su.img" ]; then
+     log_print "/data/su.img found"
+     e2fsck -p -f /data/su.img

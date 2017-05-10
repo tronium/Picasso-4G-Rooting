@@ -1,0 +1,55 @@
+GPT fdisk (gdisk) version 1.0.1
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): p
+Disk whole-dump.img: 30777344 sectors, 14.7 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): 00000000-0000-0000-0000-000000000000
+Partition table holds up to 23 entries
+First usable sector is 1024, last usable sector is 30776319
+Partitions will be aligned on 1024-sector boundaries
+Total free space is 0 sectors (0 bytes)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            1024            7167   3.0 MiB     0700  proinfo
+   2            7168           17407   5.0 MiB     0700  nvram
+   3           17408           37887   10.0 MiB    0700  protect1
+   4           37888           58367   10.0 MiB    0700  protect2
+   5           58368           59391   512.0 KiB   0700  lk
+   6           59392           60415   512.0 KiB   0700  para
+   7           60416           93183   16.0 MiB    0700  boot
+   8           93184          125951   16.0 MiB    0700  recovery
+   9          125952          142335   8.0 MiB     0700  logo
+  10          142336          162815   10.0 MiB    0700  expdb
+  11          162816          163839   512.0 KiB   0700  seccfg
+  12          163840          167935   2.0 MiB     0700  oemkeystore
+  13          167936          180223   6.0 MiB     0700  secro
+  14          180224          196607   8.0 MiB     0700  keystore
+  15          196608          206847   5.0 MiB     0700  tee1
+  16          206848          217087   5.0 MiB     0700  tee2
+  17          217088          219135   1024.0 KiB  0700  frp
+  18          219136          284671   32.0 MiB    0700  nvdata
+  19          284672          360447   37.0 MiB    0700  metadata
+  20          360448         4554751   2.0 GiB     0700  system
+  21         4554752         5373951   400.0 MiB   0700  cache
+  22         5373952        30743551   12.1 GiB    0700  userdata
+  23        30743552        30776319   16.0 MiB    0700  flashinfo
+
+Command (? for help): x
+Expert command (? for help): o
+Disk size is 30777344 sectors (14.7 GiB)
+MBR disk identifier: 0x00000000
+MBR partitions:
+
+Number  Boot  Start Sector   End Sector   Status      Code
+   1                     1     30777343   primary     0xEE
+
+Expert command (? for help): q
+
