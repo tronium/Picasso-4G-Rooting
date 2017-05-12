@@ -7,7 +7,7 @@ This repository contains a hand-cooked (manually) boot image for the Bluboo Pica
 I modified the boot image to contain the required files to gain root access on the phone without using TWRP/CWM or any third-party rooting program.
 The phone will be rooted just by using this boot image file.
 
-Steps to root to phone
+Steps to root the phone
 ----------------------
 1. Get/Download SP Flash Tool from spflashtool.com (Windows/Linux)
 2. Run SP Flash Tool
@@ -31,5 +31,4 @@ Do this at your own risk!!!
 Suggestion
 ----------
 Please backup the whole flash data before rooting the phone.
- 
 
