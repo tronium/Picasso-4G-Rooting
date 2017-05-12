@@ -1,0 +1,64 @@
+diff -ur ramdisk-orig/file_contexts ramdisk/file_contexts
+--- ramdisk-orig/file_contexts	2017-05-12 20:29:31.691387300 +0000
++++ ramdisk/file_contexts	2017-05-12 22:03:36.144572700 +0000
+@@ -895,3 +895,5 @@
+ 
+ #subtitle framework notify pixel data to Gallery apk  via /mnt/subt/xx.tmp file
+ /mnt/subt(/.*)?  u:object_r:subtitle_data_file:s0
++# SuperSU
++/su(/.*)? u:object_r:system_file:s0
+diff -ur ramdisk-orig/fstab.mt6735 ramdisk/fstab.mt6735
+--- ramdisk-orig/fstab.mt6735	2017-05-12 20:29:31.693108500 +0000
++++ ramdisk/fstab.mt6735	2017-05-12 22:03:36.145528000 +0000
+@@ -3,7 +3,7 @@
+ # 1 "<command-line>"
+ # 1 "vendor/mediatek/proprietary/hardware/fstab/mt6735/fstab.in"
+ # 23 "vendor/mediatek/proprietary/hardware/fstab/mt6735/fstab.in"
+-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ext4 ro wait,verify
++/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ext4 ro wait
+ 
+ 
+ 
+diff -ur ramdisk-orig/init.environ.rc ramdisk/init.environ.rc
+--- ramdisk-orig/init.environ.rc	2017-05-12 20:29:31.950535000 +0000
++++ ramdisk/init.environ.rc	2017-05-12 22:03:36.409771100 +0000
+@@ -1,5 +1,6 @@
+ # set up the global environment
+ on init
++    export PATH /su/bin:/sbin:/vendor/bin:/system/sbin:/system/bin:/su/xbin:/system/xbin
+     export ANDROID_BOOTLOGO 1
+     export ANDROID_ROOT /system
+     export ANDROID_ASSETS /system/app
+diff -ur ramdisk-orig/init.rc ramdisk/init.rc
+--- ramdisk-orig/init.rc	2017-05-12 20:29:31.977885200 +0000
++++ ramdisk/init.rc	2017-05-12 22:03:36.434686400 +0000
+@@ -9,6 +9,7 @@
+ import /init.${ro.hardware}.rc
+ import /init.${ro.zygote}.rc
+ import /init.trace.rc
++import /init.supersu.rc
+ 
+ on early-init
+     # Set init and its forked children's oom_adj.
+@@ -355,7 +356,7 @@
+     mkdir /data/user 0711 system system
+ 
+     # Reload policy from /data/security if present.
+-    setprop selinux.reload_policy 1
++    #;setprop selinux.reload_policy 1
+ 
+     # Set SELinux security contexts on upgrade or policy update.
+     restorecon_recursive /data
+@@ -726,3 +727,5 @@
+     # logd for write to /data/misc/logd, log group for read from log daemon
+     user logd
+     group log
++# SuperSU:PATCH:279
++# SuperSU:STOCK:9799cf5a0a9a2ac5ad5158c928f0c144a16fce3a
+Only in ramdisk: init.supersu.rc
+Only in ramdisk/sbin: launch_daemonsu.sh
+Binary files ramdisk-orig/sepolicy and ramdisk/sepolicy differ
+Only in ramdisk: sepolicy-orig
+Only in ramdisk: su
+Only in ramdisk-orig: verity_key
+Only in ramdisk: verity_key-renamed
