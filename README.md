@@ -7,6 +7,10 @@ This repository contains several hand-cooked (manually) boot images for the Blub
 I modified the boot images to contain the required files to gain root access on the phone without using TWRP/CWM or any third-party rooting program.
 The phone will be rooted just by using one of these boot images that matches the phone.
 
+This video shows the result of a rooted Bluboo Picasso 4G Android phone:
+
+[![Picasso 4G Rooted](https://raw.githubusercontent.com/tronium/Picasso-4G-Rooting/master/pic/Youtube-result.png)](https://youtu.be/IcQF7S4C5LQ "Picasso 4G Rooted")
+
 Steps to root the phone
 -----------------------
 1. Get/download SP Flash Tool from spflashtool.com (Windows/Linux)
@@ -30,5 +34,4 @@ Do this at your own risk!!!
 
 Suggestion
 ----------
-Please backup the whole flash data before rooting the phone.
-
+Please backup the whole flash contents before rooting the phone.
